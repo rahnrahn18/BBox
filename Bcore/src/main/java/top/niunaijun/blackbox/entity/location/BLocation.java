@@ -20,6 +20,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.os.SystemClock;
 
 /*
  * created by BlackBoxing at 2022/03/05
@@ -72,9 +73,9 @@ public class BLocation implements Parcelable {
         this.mLatitude = in.readDouble();
         this.mLongitude = in.readDouble();
         this.mAltitude = in.readDouble();
-        this.mAccuracy = in.readFloat();
         this.mSpeed = in.readFloat();
         this.mBearing = in.readFloat();
+        this.mAccuracy = in.readFloat();
     }
 
     public boolean isEmpty() {
@@ -109,10 +110,12 @@ public class BLocation implements Parcelable {
         Location location = new Location(LocationManager.GPS_PROVIDER);
         location.setLatitude(mLatitude);
         location.setLongitude(mLongitude);
+        location.setAltitude(mAltitude);
         location.setSpeed(mSpeed);
         location.setBearing(mBearing);
-        location.setAccuracy(40f);
+        location.setAccuracy(mAccuracy);
         location.setTime(System.currentTimeMillis());
+        location.setElapsedRealtimeNanos(SystemClock.elapsedRealtimeNanos());
         Bundle extraBundle = new Bundle();
         // GPS satellite number
         int satelliteCount = 10;
