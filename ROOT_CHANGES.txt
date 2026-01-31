@@ -1,0 +1,28 @@
+ROOT FOLDER CHANGES SUMMARY:
+
+1. gradle/wrapper/gradle-wrapper.properties:
+   - Updated distributionUrl to gradle-8.13-bin.zip as requested.
+
+2. gradle/libs.versions.toml:
+   - Updated Kotlin version to 2.1.0.
+   - Verified AGP version is 8.5.2 (Compatible with Android 15/SDK 35).
+
+3. app/build.gradle:
+   - Added buildToolsVersion "35.0.0".
+   - Updated ndkVersion to "28.2.13676358".
+   - Verified compileSdk uses rootProject.ext.compileSdkVersion (35).
+
+4. Bcore/build.gradle:
+   - Added buildToolsVersion "35.0.0".
+   - Updated ndkVersion to "28.2.13676358".
+   - Verified compileSdk uses rootProject.ext.compileSdkVersion (35).
+
+5. build.gradle (Root):
+   - Verified compileSdkVersion = 35.
+
+6. Bcore/src/main/java/top/niunaijun/blackbox/entity/location/BLocation.java:
+   - Fixed Parcelable serialization order bug (Read order now matches Write order).
+   - Enhanced convert2SystemLocation to include Altitude, Accuracy, and ElapsedRealtimeNanos for Android 15 stability.
+
+7. app/src/main/AndroidManifest.xml:
+   - Added ACCESS_FINE_LOCATION and ACCESS_COARSE_LOCATION permissions to ensure host app stability when interacting with system location services.
